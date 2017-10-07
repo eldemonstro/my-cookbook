@@ -3,7 +3,9 @@ require 'rails_helper'
 feature 'User register cuisine' do
   scenario 'successfully' do
 
-    visit new_cuisine_path
+    visit root_path
+    click_on 'Criar nova cozinha'
+    
     fill_in 'Nome', with: 'Brasileira'
     click_on 'Enviar'
 

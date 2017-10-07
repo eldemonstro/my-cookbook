@@ -1,23 +1,37 @@
-<h1>CookBook</h1>
-
-<p>Bem-vindo ao maior livro de receitas online</p>
+<div class="jumbotron">
+  <h1 class="display-3">CookBook</h1>
+  <p class="lead">Bem-vindo ao maior livro de receitas online</p>
+</div>
 
 <%= flash[:message] %>
 
-<h2>Cozinhas:</h2>
-<ul>
-  <%= @cuisines.each do |cuisine| %>
-    <li><%= link_to cuisine.name, cuisine %></li>
-  <% end %>
-</ul>
+<div class="row">
+  <div class="col border-right">
+    <%= render 'shared/recipe_details' %>
+    <%= link_to 'Enviar uma receita', new_recipe_path,
+                class: 'btn btn-default' %>
+  </div>
+  <div class="col">
+    <h2>Cozinhas:</h2>
+    <ul class="list-group">
+      <% @cuisines.each do |cuisine| %>
+        <li class="list-group-item"><%= link_to cuisine.name, cuisine,
+                        class: 'btn btn-default' %></li>
+      <% end %>
+    </ul>
 
-<h2>Tipos de receita:</h2>
-<ul>
-  <%= @recipe_type.each do |recipe_type| %>
-    <li><%= link_to recipe_type.name, recipe_type %></li>
-  <% end %>
-</ul>
+    <%= link_to 'Criar nova cozinha', new_cuisine_path,
+                class: 'btn btn-default' %>
 
-<%= render 'shared/recipe_details' %>
+    <h2>Tipos de receita:</h2>
+    <ul class="list-group">
+      <% @recipe_type.each do |recipe_type| %>
+        <li class="list-group-item"><%= link_to recipe_type.name, recipe_type,
+                        class: 'btn btn-default' %></li>
+      <% end %>
+    </ul>
 
-<%= link_to 'Enviar uma receita', new_recipe_path %>
+    <%= link_to 'Criar novo tipo de receita', new_recipe_type_path,
+                class: 'btn btn-default' %>
+  </div>
+</div>

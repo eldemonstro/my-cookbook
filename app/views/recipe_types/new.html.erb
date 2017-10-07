@@ -5,8 +5,10 @@
 <% end %>
 
 <%= form_for(@recipe_type) do |f| %>
-  <%= f.label :name, 'Nome' %>
-  <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :name, 'Nome' %>
+    <%= f.text_field :name, class: 'form-control'%>
+  </div>
 
-  <%= f.submit 'Enviar' %>
+  <%= f.submit 'Enviar', class: 'btn btn-primary' %>
 <% end %>

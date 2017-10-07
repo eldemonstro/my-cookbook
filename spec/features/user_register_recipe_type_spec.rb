@@ -3,7 +3,9 @@ require 'rails_helper'
 feature 'User register recipe_type' do
   scenario 'successfully' do
 
-    visit new_recipe_type_path
+    visit root_path
+    click_on 'Criar novo tipo de receita'
+
     fill_in 'Nome', with: 'Sobremesa'
     click_on 'Enviar'
 
