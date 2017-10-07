@@ -1,0 +1,23 @@
+<h1>CookBook</h1>
+
+<p>Bem-vindo ao maior livro de receitas online</p>
+
+<%= flash[:message] %>
+
+<h2>Cozinhas:</h2>
+<ul>
+  <%= @cuisines.each do |cuisine| %>
+    <li><%= link_to cuisine.name, cuisine %></li>
+  <% end %>
+</ul>
+
+<h2>Tipos de receita:</h2>
+<ul>
+  <%= @recipe_type.each do |recipe_type| %>
+    <li><%= link_to recipe_type.name, recipe_type %></li>
+  <% end %>
+</ul>
+
+<%= render 'shared/recipe_details' %>
+
+<%= link_to 'Enviar uma receita', new_recipe_path %>

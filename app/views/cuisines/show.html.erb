@@ -1,0 +1,7 @@
+<h1><%= @cuisine.name %></h1>
+
+<% if @recipes.any? %>
+  <%= render 'shared/recipe_details' %>
+<% else %>
+  <p>Nenhuma receita encontrada para este tipo de cozinha</p>
+<% end %>
