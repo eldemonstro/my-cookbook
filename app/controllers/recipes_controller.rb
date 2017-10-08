@@ -2,6 +2,14 @@ class RecipesController < ApplicationController
 
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
+  def index
+    @recipes = if params[:pesquisar]
+      Recipe.where('title LIKE ?', "%#{params[:pesquisar]}%")
+    else
+      Recipe.all
+    end
+  end
+
   def show
   end
 

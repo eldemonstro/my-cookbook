@@ -1,0 +1,5 @@
+<% if @recipes.any? %>
+  <%= render 'shared/recipe_details' %>
+<% else %>
+  <p class="lead">Nenhuma receita encontrada</p>
+<% end %>
