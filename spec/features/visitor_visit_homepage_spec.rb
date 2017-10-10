@@ -13,7 +13,7 @@ feature 'Visitor visit homepage' do
     cuisine = Cuisine.create(name: 'Brasileira')
     recipe_type = RecipeType.create(name: 'Sobremesa')
     recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
-                          cuisine: cuisine, difficulty: 'Médio', 
+                          cuisine: cuisine, difficulty: 'Médio',
                           ingredients: 'Cenoura, acucar, oleo e chocolate',
                           method: 'Misturar tudo, bater e assar',
                           cook_time: 60)
@@ -61,5 +61,28 @@ feature 'Visitor visit homepage' do
     expect(page).to have_css('li', text: another_recipe.cuisine.name)
     expect(page).to have_css('li', text: another_recipe.difficulty)
     expect(page).to have_css('li', text: "#{another_recipe.cook_time} minutos")
+  end
+
+  scenario 'and view last six recipes' do
+    cuisine = Cuisine.create(name: 'Brasileira')
+    recipe_type = RecipeType.create(name: 'Sobremesa')
+    recipes = []
+    recipes << create_recipe('Bolo', recipe_type, cuisine)
+    recipes << create_recipe('Brigadeiro', recipe_type, cuisine)
+    recipes << create_recipe('Pastel', recipe_type, cuisine)
+    recipes << create_recipe('Sorvete', recipe_type, cuisine)
+    recipes << create_recipe('Esfirra', recipe_type, cuisine)
+    recipes << create_recipe('Coxinha', recipe_type, cuisine)
+    recipes << create_recipe('Risole', recipe_type, cuisine)
+
+    visit root_path
+
+    expect(page).not_to have_content(recipes[0].title)
+    expect(page).to have_content(recipes[1].title)
+    expect(page).to have_content(recipes[2].title)
+    expect(page).to have_content(recipes[3].title)
+    expect(page).to have_content(recipes[4].title)
+    expect(page).to have_content(recipes[5].title)
+    expect(page).to have_content(recipes[6].title)
   end
 end
