@@ -1,5 +1,4 @@
 class CuisinesController < ApplicationController
-
   before_action :set_cuisine, only: [:show]
 
   def show

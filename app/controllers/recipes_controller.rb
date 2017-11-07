@@ -1,17 +1,15 @@
 class RecipesController < ApplicationController
-
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
     @recipes = if params[:pesquisar]
-      Recipe.where('title LIKE ?', "%#{params[:pesquisar]}%")
-    else
-      Recipe.all
-    end
+                 Recipe.where('title LIKE ?', "%#{params[:pesquisar]}%")
+               else
+                 Recipe.all
+               end
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @recipe = Recipe.new
@@ -26,7 +24,7 @@ class RecipesController < ApplicationController
     else
       @cuisines = Cuisine.all
       @recipe_types = RecipeType.all
-      flash[:error] = "Você deve informar todos os dados da receita"
+      flash[:error] = 'Você deve informar todos os dados da receita'
       render :new
     end
   end
@@ -42,7 +40,7 @@ class RecipesController < ApplicationController
     else
       @cuisines = Cuisine.all
       @recipe_types = RecipeType.all
-      flash[:error] = "Você deve informar todos os dados da receita"
+      flash[:error] = 'Você deve informar todos os dados da receita'
       render :edit
     end
   end
@@ -61,7 +59,7 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:title, :cuisine_id, :recipe_type_id,
-                                  :difficulty, :featured, :cook_time,
-                                  :ingredients, :method)
+                                   :difficulty, :featured, :cook_time,
+                                   :ingredients, :method)
   end
 end
