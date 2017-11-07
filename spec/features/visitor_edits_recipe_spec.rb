@@ -2,15 +2,15 @@ require 'rails_helper'
 
 feature 'Visitor edits recipe' do
   scenario 'successfully' do
-    mexicana = Cuisine.create(name: 'Mexicana')
-    brasileira = Cuisine.create(name: 'Brasileira')
-    sobremesa = RecipeType.create(name: 'Sobremesa')
-    entrada = RecipeType.create(name: 'Entrada')
-    recipe = Recipe.create(title: 'Taco', recipe_type: sobremesa,
-                          cuisine: brasileira, difficulty: 'facil',
-                          ingredients: 'Pao sirio, molho de cenoura',
-                          method: 'Enrolar',
-                          cook_time: 15)
+    create(:cuisine, name: 'Mexicana')
+    create(:recipe_type, name: 'Entrada')
+    brasileira = create(:cuisine, name: 'Brasileira')
+    sobremesa = create(:recipe_type, name: 'Sobremesa')
+    recipe = create(:recipe, title: 'Taco', recipe_type: sobremesa,
+                             cuisine: brasileira, difficulty: 'facil',
+                             ingredients: 'Pao sirio, molho de cenoura',
+                             method: 'Enrolar',
+                             cook_time: 15)
 
     visit root_path
     click_on recipe.title
@@ -31,12 +31,12 @@ feature 'Visitor edits recipe' do
   end
 
   scenario 'and leaves a field empty' do
-    mexicana = Cuisine.create(name: 'Mexicana')
-    entrada = RecipeType.create(name: 'Entrada')
-    recipe = Recipe.create(title: 'Japaleno', recipe_type: entrada,
-                          cuisine: mexicana, difficulty: 'Média',
-                          ingredients: 'Pão sírio, carne',
-                          method: 'Enrola a carne no pão', cook_time: 20)
+    mexicana = create(:cuisine, name: 'Mexicana')
+    entrada = create(:recipe_type, name: 'Entrada')
+    recipe = create(:recipe, title: 'Japaleno', recipe_type: entrada,
+                             cuisine: mexicana, difficulty: 'Média',
+                             ingredients: 'Pão sírio, carne',
+                             method: 'Enrola a carne no pão', cook_time: 20)
 
     visit edit_recipe_path(recipe)
 

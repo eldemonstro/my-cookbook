@@ -2,13 +2,7 @@ require 'rails_helper'
 
 feature 'User searches a recipe' do
   scenario 'successfully' do
-    cuisine = Cuisine.create(name: 'Brasileira')
-    recipe_type = RecipeType.create(name: 'Sobremesa')
-    Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
-                          cuisine: cuisine, difficulty: 'Médio',
-                          ingredients: 'Cenoura, acucar, oleo e chocolate',
-                          method: 'Misturar tudo, bater e assar',
-                          cook_time: 60)
+    create(:recipe)
 
     visit root_path
     fill_in 'pesquisar', with: 'Bolo de cenoura'
@@ -26,19 +20,12 @@ feature 'User searches a recipe' do
   end
 
   scenario 'and finds various recipes' do
-    cuisine = Cuisine.create(name: 'Brasileira')
-    recipe_type = RecipeType.create(name: 'Sobremesa')
-    Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
-                          cuisine: cuisine, difficulty: 'Médio',
-                          ingredients: 'Cenoura, acucar, oleo e chocolate',
-                          method: 'Misturar tudo, bater e assar',
-                          cook_time: 60)
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
+    create(:recipe, recipe_type: recipe_type, cuisine: cuisine)
 
-    Recipe.create(title: 'Bolo de chocolate', recipe_type: recipe_type,
-                          cuisine: cuisine, difficulty: 'Médio',
-                          ingredients: 'Chocolate, acucar, oleo e chocolate',
-                          method: 'Misturar tudo, bater e assar',
-                          cook_time: 60)
+    create(:recipe, title: 'Bolo de chocolate', recipe_type: recipe_type,
+                    cuisine: cuisine)
 
     visit root_path
     fill_in 'pesquisar', with: 'Bolo'
