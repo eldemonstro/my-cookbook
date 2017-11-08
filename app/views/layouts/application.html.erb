@@ -29,6 +29,13 @@
           <li class="nav-item">
             <%= link_to 'Inicio', root_path, class: 'nav-link' %>
           </li>
+          <li class="nav-item">
+            <% if !user_signed_in? %>
+              <%= link_to 'Entrar', new_user_session_path, class: 'nav-link' %>
+            <% else %>
+              <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+            <% end %>
+          </li>
         </ul>
         <%= form_tag(recipes_path, method: :get, class: 'form-inline my-2 my-lg-0') do %>
           <%= text_field_tag 'pesquisar', nil, placeholder: 'Pesquisa', class: 'form-control mr-sm-2' %>
@@ -37,6 +44,12 @@
       </div>
     </nav>
     <div class="container my-cookbook-body">
+      <% if notice %>
+        <div class="alert alert-info"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <div class="alert alert-danger"><%= alert %></p>
+      <% end %>
       <%= yield %>
     </div>
   </body>

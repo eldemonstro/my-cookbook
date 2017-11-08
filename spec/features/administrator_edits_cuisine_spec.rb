@@ -16,7 +16,7 @@ feature 'Administrator edits cuisine' do
 
   scenario 'and don\'t fill required fields' do
     cuisine = create(:cuisine, name: 'Brasileira')
-    
+
     visit root_path
     click_on cuisine.name
     click_on 'Editar cozinha'
@@ -24,7 +24,7 @@ feature 'Administrator edits cuisine' do
     fill_in 'Nome', with: ''
     click_on 'Atualizar Cozinha'
 
-    expect(page).to have_css('div.alert.alert-error',
+    expect(page).to have_css('div.alert.alert-danger',
                              text: 'Nome não pode ficar em branco')
   end
 
@@ -39,7 +39,7 @@ feature 'Administrator edits cuisine' do
     fill_in 'Nome', with: 'Mexicana'
     click_on 'Atualizar Cozinha'
 
-    expect(page).to have_css('div.alert.alert-error',
+    expect(page).to have_css('div.alert.alert-danger',
                              text: 'Nome já está em uso')
   end
 end

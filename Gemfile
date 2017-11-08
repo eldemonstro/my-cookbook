@@ -19,6 +19,8 @@ gem 'sprockets-rails', require: 'sprockets/railtie'
 
 gem 'simple_form'
 
+gem 'devise'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 

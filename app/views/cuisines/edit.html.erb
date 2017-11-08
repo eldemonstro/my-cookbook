@@ -1,6 +1,6 @@
 <% if @cuisine.errors.any? %>
   <% @cuisine.errors.full_messages.each do |msg| %>
-    <div class="alert alert-error">
+    <div class="alert alert-danger">
       <%= msg %>
     </div>
   <% end %>
