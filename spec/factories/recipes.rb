@@ -7,5 +7,6 @@ FactoryBot.define do
     cook_time '60'
     cuisine
     recipe_type
+    user
   end
 end

@@ -1,12 +1,10 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update,
+                                            :destroy]
 
   def index
-    @recipes = if params[:pesquisar]
-                 Recipe.where('title LIKE ?', "%#{params[:pesquisar]}%")
-               else
-                 Recipe.all
-               end
+    @recipes = Recipe.where('title LIKE ?', "%#{params[:pesquisar]}%")
   end
 
   def show; end
@@ -19,6 +17,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new recipe_params
+    @recipe.user = current_user
     if @recipe.save
       redirect_to @recipe
     else
@@ -46,9 +45,13 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    @recipe.destroy
-    flash[:message] = 'Excluido com sucesso'
-    redirect_to root_path
+    if @recipe.user == current_user
+      @recipe.destroy
+      flash[:notice] = 'Excluido com sucesso'
+      redirect_to root_path
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   private

@@ -1,11 +1,14 @@
 require 'rails_helper'
 
-feature 'Visitor register recipe' do
+feature 'User register recipe' do
   scenario 'successfully' do
+    user = create(:user, email: 'example@example.com', password: '123456789')
     create(:cuisine, name: 'Arabe')
     create(:recipe_type, name: 'Entrada')
     create(:recipe_type, name: 'Prato Principal')
     create(:recipe_type, name: 'Sobremesa')
+
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Enviar uma receita'
 
@@ -20,6 +23,8 @@ azeite, salsinha"
 limão a gosto."
     click_on 'Enviar'
 
+    recipe = Recipe.last
+
     expect(page).to have_css('h1', text: 'Tabule')
     expect(page).to have_css('h3', text: 'Detalhes')
     expect(page).to have_css('p', text: 'Entrada')
@@ -33,10 +38,15 @@ picado, azeite, salsinha")
     expect(page).to have_css('p', text:  "Misturar tudo e servir. Adicione \
 limão a gosto.")
     expect(page).not_to have_xpath("//img[contains(@src,'star')]")
+    expect(recipe.user).to eq user
   end
 
   scenario 'and must fill in all fields' do
+    user = create(:user, email: 'example@example.com', password: '123456789')
     create(:cuisine, name: 'Arabe')
+    create(:recipe_type, name: 'Entrada')
+
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Enviar uma receita'
 
@@ -52,11 +62,13 @@ limão a gosto.")
   end
 
   scenario 'and marks as featured' do
+    user = create(:user, email: 'example@example.com', password: '123456789')
     create(:cuisine, name: 'Arabe')
     create(:recipe_type, name: 'Entrada')
     create(:recipe_type, name: 'Sobremesa')
     create(:recipe_type, name: 'Prato Principal')
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Enviar uma receita'
 
@@ -73,5 +85,17 @@ gosto."
     click_on 'Enviar'
 
     expect(page).to have_xpath("//img[contains(@src,'star')]")
+  end
+
+  scenario 'and must be logged in' do
+    visit root_path
+
+    expect(page).not_to have_link('Enviar uma receita', href: new_recipe_path)
+  end
+
+  scenario 'and can\'t force if not logged in' do
+    visit new_recipe_path
+
+    expect(current_path).to eq new_user_session_path
   end
 end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Visitor edits recipe' do
+feature 'user edits recipe' do
   scenario 'successfully' do
     create(:cuisine, name: 'Mexicana')
     create(:recipe_type, name: 'Entrada')
@@ -12,6 +12,7 @@ feature 'Visitor edits recipe' do
                              method: 'Enrolar',
                              cook_time: 15)
 
+    login_as(recipe.user, scope: :user)
     visit root_path
     click_on recipe.title
     click_on 'Editar'
@@ -38,6 +39,7 @@ feature 'Visitor edits recipe' do
                              ingredients: 'Pão sírio, carne',
                              method: 'Enrola a carne no pão', cook_time: 20)
 
+    login_as(recipe.user, scope: :user)
     visit edit_recipe_path(recipe)
 
     fill_in 'Título', with: ''
@@ -48,5 +50,23 @@ feature 'Visitor edits recipe' do
     click_on 'Enviar'
 
     expect(page).to have_content('Você deve informar todos os dados da receita')
+  end
+
+  scenario 'and must be loged in' do
+    recipe = create(:recipe)
+
+    visit recipe_path recipe
+
+    expect(page).not_to have_link('Editar')
+  end
+
+  scenario 'and must own the recipe' do
+    user = create(:user)
+    recipe = create(:recipe)
+
+    login_as(user, scope: :user)
+    visit recipe_path recipe
+
+    expect(page).not_to have_link('Editar')
   end
 end
