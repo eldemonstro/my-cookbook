@@ -29,13 +29,19 @@
           <li class="nav-item">
             <%= link_to 'Inicio', root_path, class: 'nav-link' %>
           </li>
-          <li class="nav-item">
-            <% if !user_signed_in? %>
+
+          <% if !user_signed_in? %>
+            <li class="nav-item">
               <%= link_to 'Entrar', new_user_session_path, class: 'nav-link' %>
-            <% else %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Cadastrar no site', new_user_registration_path, class: 'nav-link' %>
+            </li>
+          <% else %>
+            <li class="nav-item">
               <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: 'nav-link' %>
-            <% end %>
-          </li>
+            </li>
+          <% end %>
         </ul>
         <%= form_tag(recipes_path, method: :get, class: 'form-inline my-2 my-lg-0') do %>
           <%= text_field_tag 'pesquisar', nil, placeholder: 'Pesquisa', class: 'form-control mr-sm-2' %>
