@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     post 'share', on: :member
   end
 
+  get 'my_profile', to: 'user_profiles#index', as: 'my_user_profile'
+
   get 'my_favorite_recipes', to: 'home#favorites', as: 'favorite_recipes'
 
   resources :cuisines, only: [:show, :new, :create, :edit, :update]
