@@ -1,0 +1,5 @@
+pt-BR:
+  recipes:
+    show:
+      name: Nome
+      submit: Compartilhar

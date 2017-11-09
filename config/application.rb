@@ -30,5 +30,7 @@ module MyCookbook2
     config.generators.system_tests = nil
 
     config.i18n.default_locale = :'pt-BR'
+
+    config.action_mailer.default_url_options = { host: 'mycookbook.com' }
   end
 end
