@@ -1,5 +1,5 @@
 class RecipeTypesController < ApplicationController
-  before_action :set_recipe_type, only: [:show]
+  before_action :set_recipe_type, only: [:show, :edit, :update]
 
   def show
     @recipes = @recipe_type.recipes
@@ -15,6 +15,16 @@ class RecipeTypesController < ApplicationController
       redirect_to @recipe_type
     else
       render :new
+    end
+  end
+
+  def edit; end
+
+  def update
+    if @recipe_type.update recipe_type_params
+      redirect_to @recipe_type
+    else
+      render :edit
     end
   end
 

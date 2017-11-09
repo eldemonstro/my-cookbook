@@ -1,0 +1,7 @@
+pt-BR:
+  activerecord:
+    models:
+      recipe_type: Tipo de Receita
+    attributes:
+      recipe_type:
+        name: Nome

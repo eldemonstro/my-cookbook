@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   get 'my_favorite_recipes', to: 'home#favorites', as: 'favorite_recipes'
 
   resources :cuisines, only: [:show, :new, :create, :edit, :update]
-  resources :recipe_types, only: [:show, :new, :create]
+  resources :recipe_types, only: [:show, :new, :create, :edit, :update]
 end

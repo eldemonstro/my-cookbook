@@ -18,7 +18,7 @@ receitas")
     fill_in 'Nome', with: ''
     click_on 'Enviar'
 
-    expect(page).to have_content('Você deve informar o nome do tipo de receita')
+    expect(page).to have_content('Nome não pode ficar em branco')
   end
 
   scenario 'and cannot be duplicate' do
@@ -28,6 +28,6 @@ receitas")
     fill_in 'Nome', with: 'Sobremesa'
     click_on 'Enviar'
 
-    expect(page).to have_content('Tipo de receita existente')
+    expect(page).to have_content('Nome já está em uso')
   end
 end
