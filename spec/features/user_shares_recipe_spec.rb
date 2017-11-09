@@ -15,8 +15,6 @@ feature 'user shares recipe via email' do
 
     expect(RecipeMailer).to receive(:share_recipe)
     click_on 'Compartilhar'
-
-    expect(current_path).to eq recipe_path recipe
   end
 
   scenario 'and must be logged in' do

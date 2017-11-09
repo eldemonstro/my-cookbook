@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :recipes do
     post 'favorite', on: :member
+    post 'unfavorite', on: :member
     post 'share', on: :member
   end
 

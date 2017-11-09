@@ -70,4 +70,35 @@ feature 'user favorites recipe' do
     expect(page).not_to have_link('Favoritar',
                                   href: favorite_recipe_path(recipe))
   end
+
+  scenario 'and can\'t re-favorite recipe' do
+    user = create(:user)
+    recipe = create(:recipe)
+
+    login_as(user, scope: :user)
+    visit recipe_path recipe
+    click_on 'Favoritar'
+    visit recipe_path recipe
+
+    expect(page).not_to have_link('Favoritar',
+                                  href: favorite_recipe_path(recipe))
+  end
+
+  scenario 'and can\'t unfavorites recipe' do
+    user = create(:user)
+    recipe = create(:recipe)
+
+    login_as(user, scope: :user)
+    visit recipe_path recipe
+    click_on 'Favoritar'
+    visit recipe_path recipe
+    click_on 'Desfavoritar'
+
+    user.reload
+    expect(page).to have_link('Favoritar',
+                              href: favorite_recipe_path(recipe))
+    expect(page).to have_css('.alert.alert-info',
+                             text: 'Receita desfavoritada com sucesso')
+    expect(user.favorites.exists?(recipe.id)).to eq false
+  end
 end
