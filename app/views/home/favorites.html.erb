@@ -1,1 +1,7 @@
 <h1>Minhas receitas favoritas</h1>
+
+<% if @recipes.any? %>
+  <% @recipes.each do |recipe| %>
+    <%= render recipe %>
+  <% end %>
+<% end %>

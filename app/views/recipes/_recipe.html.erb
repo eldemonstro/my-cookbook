@@ -1,0 +1,8 @@
+<%= image_tag 'star.png' if recipe.featured? %>
+<h2><%= link_to recipe.title, recipe %></h2>
+<ul class="list-group">
+  <li class="list-group-item"><%= recipe.recipe_type.name %></li>
+  <li class="list-group-item"><%= recipe.cuisine.name %></li>
+  <li class="list-group-item"><%= recipe.difficulty %></li>
+  <li class="list-group-item"><%= recipe.show_cook_time %></li>
+</ul>

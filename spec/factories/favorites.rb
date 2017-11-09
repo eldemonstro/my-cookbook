@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :user_recipe do
+  factory :favorite do
     user nil
     recipe nil
   end

@@ -56,6 +56,7 @@ class RecipesController < ApplicationController
 
   def favorite
     flash[:notice] = 'Receita favoritada com sucesso'
+    current_user.favorites.create(recipe: @recipe)
     redirect_to recipe_path @recipe
   end
 

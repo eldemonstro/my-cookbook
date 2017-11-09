@@ -6,5 +6,6 @@ class HomeController < ApplicationController
   end
 
   def favorites
+    @recipes = current_user.favorite_recipes
   end
 end

@@ -13,7 +13,7 @@
 <h3>Como Preparar</h3>
 <p><%= @recipe.method %></p>
 
-<% if current_user == @recipe.owner %>
+<% if current_user == @recipe.user %>
   <%= link_to 'Editar', edit_recipe_path(@recipe) %>
   <%= link_to 'Excluir', @recipe, method: :delete %>
 <% end %>
