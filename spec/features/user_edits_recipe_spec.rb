@@ -52,12 +52,20 @@ feature 'user edits recipe' do
     expect(page).to have_content('Você deve informar todos os dados da receita')
   end
 
-  scenario 'and must be loged in' do
+  scenario 'and must be logged in' do
     recipe = create(:recipe)
 
     visit recipe_path recipe
 
     expect(page).not_to have_link('Editar')
+  end
+
+  scenario 'and must be logged in and can\'t have direct access' do
+    recipe = create(:recipe)
+
+    visit edit_recipe_path recipe
+
+    expect(current_path).to eq new_user_session_path
   end
 
   scenario 'and must own the recipe' do
@@ -68,5 +76,15 @@ feature 'user edits recipe' do
     visit recipe_path recipe
 
     expect(page).not_to have_link('Editar')
+  end
+
+  scenario 'and must own the recipe and can\'t have direct access' do
+    user = create(:user)
+    recipe = create(:recipe)
+
+    login_as(user, scope: :user)
+    visit edit_recipe_path recipe
+
+    expect(current_path).to eq root_path
   end
 end

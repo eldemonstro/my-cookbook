@@ -30,8 +30,12 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    @cuisines = Cuisine.all
-    @recipe_types = RecipeType.all
+    if current_user == @recipe.user
+      @cuisines = Cuisine.all
+      @recipe_types = RecipeType.all
+    else
+      redirect_to root_path
+    end
   end
 
   def update
