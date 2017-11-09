@@ -1,5 +1,7 @@
 <h1><%= @recipe.title %></h1>
-<%= link_to 'Favoritar', favorite_recipe_path(@recipe), method: :post %>
+<% if user_signed_in? && current_user != @recipe.user %>
+  <%= link_to 'Favoritar', favorite_recipe_path(@recipe), method: :post %>
+<% end %>
 
 <%= image_tag 'star.png' if @recipe.featured? %>
 
