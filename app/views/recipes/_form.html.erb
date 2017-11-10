@@ -1,37 +1,19 @@
-<%= flash[:error] if @recipe.errors.any? %>
+<% if @recipe.errors.any? %>
+  <% @recipe.errors.full_messages.each do |msg| %>
+    <div class="alert alert-danger">
+      <%= msg %>
+    </div>
+  <% end %>
+<% end %>
 
-<%= form_for(@recipe) do |f| %>
-  <div class="form-group">
-    <%= f.label :title, 'Título' %>
-    <%= f.text_field :title, class: 'form-control'%>
-  </div>
-  <div class="form-group">
-    <%= f.label :recipe_type_id, 'Tipo da Receita' %>
-    <%= f.collection_select :recipe_type_id, @recipe_types, :id, :name, {},  {class: 'form-control'} %>
-  </div>
-  <div class="form-group">
-    <%= f.label :cuisine_id, 'Cozinha' %>
-    <%= f.collection_select :cuisine_id, @cuisines, :id, :name, {},  {class: 'form-control'} %>
-  </div>
-  <div class="form-group">
-    <%= f.label :difficulty, 'Dificuldade' %>
-    <%= f.text_field :difficulty, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :cook_time, 'Tempo de Preparo' %>
-    <%= f.number_field :cook_time, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :ingredients, 'Ingredientes' %>
-    <%= f.text_field :ingredients, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :method, 'Como Preparar' %>
-    <%= f.text_field :method, class: 'form-control' %>
-  </div>
-  <div class="form-check">
-    <%= f.check_box(:featured) %>
-    <%= f.label(:featured, "Destaque", class: 'form-check-label') %>
-  </div>
-  <%= f.submit 'Enviar', class: 'btn btn-primary' %>
+<%= simple_form_for(@recipe) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :recipe_type_id, collection: @recipe_types %>
+  <%= f.input :cuisine_id, collection: @cuisines %>
+  <%= f.input :difficulty %>
+  <%= f.input :cook_time %>
+  <%= f.input :ingredients %>
+  <%= f.input :method %>
+  <%= f.input :featured, as: :boolean %>
+  <%= f.button :submit, class: 'btn btn-primary' %>
 <% end %>

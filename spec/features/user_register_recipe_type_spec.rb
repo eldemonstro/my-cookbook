@@ -6,7 +6,7 @@ feature 'User register recipe_type' do
     click_on 'Criar novo tipo de receita'
 
     fill_in 'Nome', with: 'Sobremesa'
-    click_on 'Enviar'
+    click_on 'Criar Tipo de Receita'
 
     expect(page).to have_css('h1', text: 'Sobremesa')
     expect(page).to have_content("Nenhuma receita encontrada para este tipo de \
@@ -16,7 +16,7 @@ receitas")
   scenario 'and must fill in name' do
     visit new_recipe_type_path
     fill_in 'Nome', with: ''
-    click_on 'Enviar'
+    click_on 'Criar Tipo de Receita'
 
     expect(page).to have_content('Nome não pode ficar em branco')
   end
@@ -26,7 +26,7 @@ receitas")
 
     visit new_recipe_type_path
     fill_in 'Nome', with: 'Sobremesa'
-    click_on 'Enviar'
+    click_on 'Criar Tipo de Receita'
 
     expect(page).to have_content('Nome já está em uso')
   end

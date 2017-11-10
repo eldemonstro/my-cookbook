@@ -24,7 +24,6 @@ class RecipesController < ApplicationController
     else
       @cuisines = Cuisine.all
       @recipe_types = RecipeType.all
-      flash[:error] = 'Você deve informar todos os dados da receita'
       render :new
     end
   end
@@ -44,7 +43,6 @@ class RecipesController < ApplicationController
     else
       @cuisines = Cuisine.all
       @recipe_types = RecipeType.all
-      flash[:error] = 'Você deve informar todos os dados da receita'
       render :edit
     end
   end
