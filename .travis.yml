@@ -1,16 +1,17 @@
 language: ruby
 rvm:
-  - 2.3.3
+- 2.3.3
 before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+  > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- ./cc-test-reporter before-build
 script:
-  - bundle exec rspec
+- bundle exec rspec
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+- ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 deploy:
   provider: heroku
   api_key:
-    secure: $HEROKU_KEY
-    app: eldemonstrocookbook
+    secure: x4Epby4GGNTKR3fpwsZ/xlKeIVyi0uEbGSCVR1/kVlAX0kr9czGZKho236TzuDeglHYBqtRrvkgRpWOBm1s0UK/85bsm3o4396IKX7TZbwvQHmT+AlM+2/a3DelYq0TzacgHshOhF52yMhXausvyGzqnGRWkKH/AthLU4MeW+0C3gCcjRYkmrg0KFdFWK8Q6eOWA1815ykGqV+nI1Qxc24QPC1n/s++kqvPF879tP0WlAFB4CUeh3PPDy37HTNgYtWm8KsPwG4v64Jdsrpre/XvdL77llKYmu0hHbafGQrfXeBW7YBVyI8L+7g3+OVm75XY3lh2KKTpyJjh84Xlrn74jtR0P+O0u87Micq/xtf2vnXYiyHO66B/lLvAZpLbysD5O1MwXDJUwirvuNnc5mR6gPOay+M1jQS6gQ9E/XusHNfUPG72SzDeGIn9/Ae6l7eUnVOzh7HU/DUk2ySHOOx40YL8Jjw1lO+Cb62Yhdo8+k8QL7aVLDNnBb7xUrM9MxVv6q7fEaPPqoEQQWAgSExg20J2xcP2JEqy5OJW479Gy9qCx3KcOuBskA7B/GKqDwudXJV9VNzfFrW/aPNgFL+cuJipdpeE40TkD79PT12ZetwwdCkLeiTCdUz4wh3TV3RcI2qXnu9CSIaMyTkUPNNb/oaoR/dEq8UfINK1vK2M=
+  app: eldemonstrocookbook
