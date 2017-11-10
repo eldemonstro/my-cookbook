@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title"><%= link_to recipe.title, recipe %></h4>
+    <h6 class="card-subtitle mb-2 text-muted"><%= "#{t 'By'} #{recipe.user.name}" %></h6>
+    <dl class="row">
+      <dt class="col-6"><%= t 'Cuisine' %></dt>
+      <dd class="col-6"><%= recipe.cuisine.name %></dd>
+      <dt class="col-6"><%= t 'Recipe Type' %></dt>
+      <dd class="col-6"><%= recipe.recipe_type.name %></dd>
+      <dt class="col-6"><%= t 'Difficulty' %></dt>
+      <dd class="col-6"><%= recipe.difficulty %></dd>
+      <dt class="col-6"><%= t 'Cook time' %></dt>
+      <dd class="col-6"><%= "#{recipe.cook_time} #{t('minutes')}" %></dd>
+    </dl>
+  </div>
+</div>

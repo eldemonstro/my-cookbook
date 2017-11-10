@@ -10,6 +10,6 @@ RSpec.describe 'user deletes recipe', type: :request do
     assert_response :redirect
     follow_redirect!
 
-    assert_select 'div.alert-danger', /Somente o dono da receita pode a excluir/
+    assert_select 'div.alert-danger', 'Somente o dono da receita pode a excluir'
   end
 end

@@ -42,6 +42,9 @@
               <%= link_to 'Meu perfil', user_profile_path(current_user), class: 'nav-link' %>
             </li>
             <li class="nav-item">
+              <%= link_to t('Send a recipe'), new_recipe_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
               <%= link_to 'Minhas receitas favoritas', favorite_recipes_path, class: 'nav-link' %>
             </li>
             <li class="nav-item">
@@ -57,12 +60,13 @@
     </nav>
     <div class="container my-cookbook-body">
       <% if notice %>
-        <div class="alert alert-info"><%= notice %></p>
+        <div class="alert alert-info"><%= notice %></div>
       <% end %>
       <% if alert %>
-        <div class="alert alert-danger"><%= alert %></p>
+        <div class="alert alert-danger"><%= alert %></div>
       <% end %>
       <%= yield %>
     </div>
+    <script src="http://localhost:35729/livereload.js" charset="utf-8"></script>
   </body>
 </html>

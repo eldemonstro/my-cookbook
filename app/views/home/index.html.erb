@@ -1,16 +1,16 @@
 <div class="jumbotron">
-  <h1 class="display-3">CookBook</h1>
-  <p class="lead">Bem-vindo ao maior livro de receitas online</p>
+  <h1 class="display-3"><%= t 'appname' %></h1>
+  <p class="lead"><%= t 'description' %></p>
 </div>
 
 <%= flash[:message] %>
 
 <div class="row">
-  <div class="col border-right">
-    <%= render 'shared/recipe_details' %>
-    <% if user_signed_in? %>
-      <%= link_to 'Enviar uma receita', new_recipe_path,
-          class: 'btn btn-default' %>
+  <div class="col">
+    <h2><%= t 'Last recipes' %>:</h2>
+    <% @recipes.each do |recipe| %>
+      <%= render partial: 'shared/recipe_card', locals: {recipe: recipe} %>
+      <br>
     <% end %>
   </div>
   <div class="col">
@@ -36,4 +36,6 @@
     <%= link_to 'Criar novo tipo de receita', new_recipe_type_path,
                 class: 'btn btn-default' %>
   </div>
+
+
 </div>

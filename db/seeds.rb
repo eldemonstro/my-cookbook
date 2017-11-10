@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+cuisine = Cuisine.create(name: 'Mexicana')
+recipe_type = RecipeType.create(name: 'Entrada')
+user = User.create(name: 'José', email: 'admin@admin.com', password: '123456')
+Recipe.create!(title: 'Taco', recipe_type: recipe_type, cuisine: cuisine,
+               difficulty: 'facil', ingredients: 'Pao sirio, molho de cenoura',
+               method: 'Enrolar', cook_time: 15, user: user)
