@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     post 'share', on: :member
   end
 
-  get 'my_profile', to: 'user_profiles#index', as: 'my_user_profile'
+  resources :user_profiles, only: [:show]
 
   get 'my_favorite_recipes', to: 'home#favorites', as: 'favorite_recipes'
 

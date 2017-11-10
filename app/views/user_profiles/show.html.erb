@@ -1,0 +1,15 @@
+<h1>Perfil de <%= @user.name %></h1>
+
+<section id="own-recipes">
+  <h2>Recipes</h2>
+  <% @user.recipes.each do |recipe| %>
+    <%= render recipe %>
+  <% end %>
+</section>
+
+<section id="favorite-recipes">
+  <h2>Recipes</h2>
+  <% @user.favorite_recipes.each do |recipe| %>
+    <%= render recipe %>
+  <% end %>
+</section>

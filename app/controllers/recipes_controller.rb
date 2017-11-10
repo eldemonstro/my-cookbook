@@ -73,7 +73,6 @@ class RecipesController < ApplicationController
   end
 
   def share
-    puts params
     RecipeMailer.share_recipe(@recipe.id, current_user.id, params[:name],
                               params[:email])
     redirect_to recipe_path @recipe

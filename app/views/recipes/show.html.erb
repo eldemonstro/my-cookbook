@@ -1,6 +1,8 @@
 <h1><%= @recipe.title %></h1>
+<p class="lead">Por <%= link_to @recipe.user.name, user_profile_path(@recipe.user) %></p>
+
 <% if user_signed_in? && current_user != @recipe.user %>
-  <% if !current_user.favorites.exists?(@recipe.id) %>
+  <% if !current_user.favorites.exists?(recipe: @recipe) %>
     <%= link_to 'Favoritar', favorite_recipe_path(@recipe), method: :post %>
   <% else %>
     <%= link_to 'Desfavoritar', unfavorite_recipe_path(@recipe), method: :post %>
