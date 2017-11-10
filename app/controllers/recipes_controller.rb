@@ -55,7 +55,8 @@ class RecipesController < ApplicationController
       flash[:notice] = 'Excluido com sucesso'
       redirect_to root_path
     else
-      redirect_to new_user_session_path
+      flash[:alert] = 'Somente o dono da receita pode a excluir'
+      redirect_to @recipe
     end
   end
 

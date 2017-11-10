@@ -14,6 +14,7 @@ feature 'user shares recipe via email' do
     end
 
     expect(RecipeMailer).to receive(:share_recipe)
+      .with(recipe.id, user.id, 'Receiver', 'examplereceive@example.com')
     click_on 'Compartilhar'
   end
 
