@@ -1,4 +1,17 @@
 pt-BR:
+  activerecord:
+    models:
+      recipe: Receita
+    attributes:
+      recipe:
+        title: Título
+        cuisine_id: Cozinha
+        recipe_type_id: Tipo da Receita
+        difficulty: Dificuldade
+        cook_time: Tempo de Preparo
+        ingredients: Ingredientes
+        method: Como Preparar
+        featured: Destaque
   recipes:
     show:
       name: Nome
@@ -6,5 +19,5 @@ pt-BR:
   Cuisine: Cozinha
   Recipe Type: Tipo de Receita
   Difficulty: Dificuldade
-  Cook time: Tempo de preparo
+  Cook time: Tempo de Preparo
   By: Por

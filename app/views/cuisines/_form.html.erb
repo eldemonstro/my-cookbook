@@ -1,0 +1,12 @@
+<% if @cuisine.errors.any? %>
+  <% @cuisine.errors.full_messages.each do |msg| %>
+    <div class="alert alert-danger">
+      <%= msg %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= simple_form_for(@cuisine) do |f| %>
+  <%= f.input :name %>
+  <%= f.button :submit, class: 'btn btn-primary' %>
+<% end %>

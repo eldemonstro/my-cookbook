@@ -21,7 +21,7 @@ feature 'User register recipe' do
 azeite, salsinha"
     fill_in 'Como Preparar', with: "Misturar tudo e servir. Adicione \
 limão a gosto."
-    click_on 'Enviar'
+    click_on 'Criar Receita'
 
     recipe = Recipe.last
 
@@ -56,9 +56,9 @@ limão a gosto.")
     fill_in 'Tempo de Preparo', with: ''
     fill_in 'Ingredientes', with: ''
     fill_in 'Como Preparar', with: ''
-    click_on 'Enviar'
+    click_on 'Criar Receita'
 
-    expect(page).to have_content('Você deve informar todos os dados da receita')
+    expect(page).to have_content('não pode ficar em branco')
   end
 
   scenario 'and marks as featured' do
@@ -82,7 +82,7 @@ limão a gosto.")
 azeite, salsinha"
     fill_in 'Como Preparar', with: "Misturar tudo e servir. Adicione limão a \
 gosto."
-    click_on 'Enviar'
+    click_on 'Criar Receita'
 
     expect(page).to have_xpath("//img[contains(@src,'star')]")
   end

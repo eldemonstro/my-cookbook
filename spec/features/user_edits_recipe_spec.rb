@@ -17,12 +17,14 @@ feature 'user edits recipe' do
     click_on recipe.title
     click_on 'Editar'
 
+    save_page
+
     fill_in 'Título', with: 'Taco de carne'
     select 'Mexicana', from: 'Cozinha'
     select 'Entrada', from: 'Tipo da Receita'
     fill_in 'Ingredientes', with: 'Pão sirio, molho de tomate, carne'
     fill_in 'Como Preparar', with: 'Enrolar tudo no pão'
-    click_on 'Enviar'
+    click_on 'Atualizar Receita'
 
     expect(page).to have_css('h1', text: 'Taco de carne')
     expect(page).to have_css('p', text: 'Entrada')
@@ -47,9 +49,9 @@ feature 'user edits recipe' do
     fill_in 'Tempo de Preparo', with: ''
     fill_in 'Ingredientes', with: ''
     fill_in 'Como Preparar', with: ''
-    click_on 'Enviar'
+    click_on 'Atualizar Receita'
 
-    expect(page).to have_content('Você deve informar todos os dados da receita')
+    expect(page).to have_content('não pode ficar em branco')
   end
 
   scenario 'and must be logged in' do
