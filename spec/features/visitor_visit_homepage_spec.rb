@@ -85,4 +85,44 @@ as carnes já preparadas",
     expect(page).to have_content(recipes[5].title)
     expect(page).to have_content(recipes[6].title)
   end
+
+  scenario 'and views most favorited' do
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
+    not_favorited_recipe = create(:recipe, title: 'Bolo',
+                                           recipe_type: recipe_type,
+                                           cuisine: cuisine)
+    users = []
+    5.times do
+      users << create(:user)
+    end
+
+    recipes = []
+    recipes << create(:recipe, title: 'Brigadeiro', recipe_type: recipe_type,
+                               cuisine: cuisine)
+    recipes << create(:recipe, title: 'Pastel', recipe_type: recipe_type,
+                               cuisine: cuisine)
+    recipes << create(:recipe, title: 'Sorvete', recipe_type: recipe_type,
+                               cuisine: cuisine)
+    recipes << create(:recipe, title: 'Esfirra', recipe_type: recipe_type,
+                               cuisine: cuisine)
+    recipes << create(:recipe, title: 'Coxinha', recipe_type: recipe_type,
+                               cuisine: cuisine)
+    recipes.each do |recipe|
+      users.each do |user|
+        user.favorites.create(recipe: recipe)
+      end
+    end
+
+    visit root_path
+
+    within '#most-favorited' do
+      expect(page).not_to have_content(not_favorited_recipe.title)
+      expect(page).to have_content(recipes[0].title)
+      expect(page).to have_content(recipes[1].title)
+      expect(page).to have_content(recipes[2].title)
+      expect(page).to have_content(recipes[3].title)
+      expect(page).to have_content(recipes[4].title)
+    end
+  end
 end

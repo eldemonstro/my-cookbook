@@ -6,10 +6,19 @@
 <%= flash[:message] %>
 
 <div class="row">
-  <div class="col">
+  <div class="col" id="last-recipes">
     <h2><%= t 'Last recipes' %>:</h2>
     <% if @recipes.any? %>
       <% @recipes.each do |recipe| %>
+        <%= render partial: 'shared/recipe_card', locals: {recipe: recipe} %>
+        <br>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col" id="most-favorited">
+    <h2><%= t 'Most favorited recipes' %>:</h2>
+    <% if @most_favorited_recipes.any? %>
+      <% @most_favorited_recipes.each do |recipe| %>
         <%= render partial: 'shared/recipe_card', locals: {recipe: recipe} %>
         <br>
       <% end %>
