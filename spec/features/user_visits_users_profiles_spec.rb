@@ -34,11 +34,11 @@ feature 'user visits users profiles' do
     visit user_profile_path recipe_owner
 
     within 'section#own-recipes' do
-      expect(page).to have_css('h2', text: recipes[0].title)
-      expect(page).to have_css('h2', text: recipes[1].title)
-      expect(page).to have_css('h2', text: recipes[2].title)
-      expect(page).to have_css('h2', text: recipes[3].title)
-      expect(page).to have_css('h2', text: recipes[4].title)
+      expect(page).to have_css('h4', text: recipes[0].title)
+      expect(page).to have_css('h4', text: recipes[1].title)
+      expect(page).to have_css('h4', text: recipes[2].title)
+      expect(page).to have_css('h4', text: recipes[3].title)
+      expect(page).to have_css('h4', text: recipes[4].title)
     end
   end
 
@@ -58,11 +58,11 @@ feature 'user visits users profiles' do
     visit user_profile_path another_user
 
     within 'section#favorite-recipes' do
-      expect(page).to have_css('h2', text: recipes[0].title)
-      expect(page).to have_css('h2', text: recipes[1].title)
-      expect(page).to have_css('h2', text: recipes[2].title)
-      expect(page).to have_css('h2', text: recipes[3].title)
-      expect(page).to have_css('h2', text: recipes[4].title)
+      expect(page).to have_css('h4', text: recipes[0].title)
+      expect(page).to have_css('h4', text: recipes[1].title)
+      expect(page).to have_css('h4', text: recipes[2].title)
+      expect(page).to have_css('h4', text: recipes[3].title)
+      expect(page).to have_css('h4', text: recipes[4].title)
     end
   end
 end

@@ -26,13 +26,12 @@ limão a gosto."
     recipe = Recipe.last
 
     expect(page).to have_css('h1', text: 'Tabule')
-    expect(page).to have_css('h3', text: 'Detalhes')
-    expect(page).to have_css('p', text: 'Entrada')
-    expect(page).to have_css('p', text: 'Arabe')
-    expect(page).to have_css('p', text: 'Fácil')
-    expect(page).to have_css('p', text: '45 minutos')
-    expect(page).to have_css('h3', text: 'Ingredientes')
-    expect(page).to have_css('p', text: "Trigo para quibe, cebola, tomate \
+    expect(page).to have_css('dd', text: 'Entrada')
+    expect(page).to have_css('dd', text: 'Arabe')
+    expect(page).to have_css('dd', text: 'Fácil')
+    expect(page).to have_css('dd', text: '45 minutos')
+    expect(page).to have_css('dt', text: 'Ingredientes')
+    expect(page).to have_css('dd', text: "Trigo para quibe, cebola, tomate \
 picado, azeite, salsinha")
     expect(page).to have_css('h3', text: 'Como Preparar')
     expect(page).to have_css('p', text:  "Misturar tudo e servir. Adicione \

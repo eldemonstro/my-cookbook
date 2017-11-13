@@ -3,32 +3,39 @@
 
 <% if user_signed_in? && current_user != @recipe.user %>
   <% if !current_user.favorites.exists?(recipe: @recipe) %>
-    <%= link_to 'Favoritar', favorite_recipe_path(@recipe), method: :post %>
+    <%= link_to 'Favoritar', favorite_recipe_path(@recipe), method: :post, class: 'btn btn-primary' %>
   <% else %>
-    <%= link_to 'Desfavoritar', unfavorite_recipe_path(@recipe), method: :post %>
+    <%= link_to 'Desfavoritar', unfavorite_recipe_path(@recipe), method: :post, class: 'btn btn-secondary' %>
   <% end %>
+  <hr>
 <% end %>
 
 <%= image_tag 'star.png' if @recipe.featured? %>
 
-<h3>Detalhes</h3>
-<p><%= @recipe.recipe_type.name %></p>
-<p><%= @recipe.cuisine.name %></p>
-<p><%= @recipe.difficulty %></p>
-<p><%= @recipe.show_cook_time %></p>
-<h3>Ingredientes</h3>
-<p><%= @recipe.ingredients %></p>
+<dl class="row">
+  <dt class="col-4"><%= t 'Cuisine' %></dt>
+  <dd class="col-8"><%= @recipe.cuisine.name %></dd>
+  <dt class="col-4"><%= t 'Recipe Type' %></dt>
+  <dd class="col-8"><%= @recipe.recipe_type.name %></dd>
+  <dt class="col-4"><%= t 'Difficulty' %></dt>
+  <dd class="col-8"><%= @recipe.difficulty %></dd>
+  <dt class="col-4"><%= t 'Cook time' %></dt>
+  <dd class="col-8"><%= "#{@recipe.cook_time} #{t('minutes')}" %></dd>
+  <dt class="col-4"><%= t 'activerecord.attributes.recipe.ingredients' %></dt>
+  <dd class="col-8"><%= @recipe.ingredients %></dd>
+</dl>
 <h3>Como Preparar</h3>
 <p><%= @recipe.method %></p>
-
+<hr>
 <% if current_user == @recipe.user %>
-  <%= link_to 'Editar', edit_recipe_path(@recipe) %>
-  <%= link_to 'Excluir', @recipe, method: :delete %>
+  <%= link_to 'Editar', edit_recipe_path(@recipe), class: 'btn btn-primary' %>
+  <%= link_to 'Excluir', @recipe, method: :delete, class: 'btn btn-danger' %>
+  <hr>
 <% end %>
-
 <section class="share">
   <% if user_signed_in? %>
     <%= form_tag(share_recipe_path(@recipe), method: :post) do %>
+      <legend><%= t '.Share this recipe with a friend' %></legend>
       <div class="form-group">
         <%= label_tag :email %>
         <%= text_field_tag :email, nil, class: 'form-control' %>
@@ -43,5 +50,5 @@
     <p>Faça o log in para compartilhar uma receita</p>
   <% end %>
 </section>
-
-<%= link_to 'Voltar', root_path %>
+<hr>
+<%= link_to 'Voltar', root_path, class: 'btn btn-outline-primary' %>

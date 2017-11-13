@@ -1,15 +1,23 @@
 <h1>Perfil de <%= @user.name %></h1>
 
 <section id="own-recipes">
-  <h2>Recipes</h2>
-  <% @user.recipes.each do |recipe| %>
-    <%= render recipe %>
-  <% end %>
+  <h2>Receitas enviadas</h2>
+  <div class="row">
+    <% @user.recipes.each do |recipe| %>
+      <div class="col-6">
+        <%= render partial: 'shared/recipe_card', locals: {recipe: recipe} %>
+      </div>
+    <% end %>
+  </div>
 </section>
-
+<hr>
 <section id="favorite-recipes">
-  <h2>Recipes</h2>
-  <% @user.favorite_recipes.each do |recipe| %>
-    <%= render recipe %>
-  <% end %>
+  <h2>Receitas favoritas</h2>
+  <div class="row">
+    <% @user.favorite_recipes.each do |recipe| %>
+      <div class="col-6">
+        <%= render partial: 'shared/recipe_card', locals: {recipe: recipe} %>
+      </div>
+    <% end %>
+  </div>
 </section>

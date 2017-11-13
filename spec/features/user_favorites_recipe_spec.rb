@@ -25,7 +25,7 @@ feature 'user favorites recipe' do
     click_on 'Minhas receitas favoritas'
 
     expect(page).to have_css('h1', text: 'Minhas receitas favoritas')
-    expect(page).to have_css('h2', text: recipe.title)
+    expect(page).to have_css('h4', text: recipe.title)
   end
 
   scenario 'and favorites lots of recipes' do
@@ -44,11 +44,11 @@ feature 'user favorites recipe' do
     end
     click_on 'Minhas receitas favoritas'
 
-    expect(page).to have_css('h2', text: recipes[0].title)
-    expect(page).to have_css('h2', text: recipes[1].title)
-    expect(page).to have_css('h2', text: recipes[2].title)
-    expect(page).to have_css('h2', text: recipes[3].title)
-    expect(page).to have_css('h2', text: recipes[4].title)
+    expect(page).to have_css('h4', text: recipes[0].title)
+    expect(page).to have_css('h4', text: recipes[1].title)
+    expect(page).to have_css('h4', text: recipes[2].title)
+    expect(page).to have_css('h4', text: recipes[3].title)
+    expect(page).to have_css('h4', text: recipes[4].title)
   end
 
   scenario 'and must be logged in' do

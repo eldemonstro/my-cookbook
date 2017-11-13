@@ -27,9 +27,9 @@ feature 'user edits recipe' do
     click_on 'Atualizar Receita'
 
     expect(page).to have_css('h1', text: 'Taco de carne')
-    expect(page).to have_css('p', text: 'Entrada')
-    expect(page).to have_css('p', text: 'Mexicana')
-    expect(page).to have_css('p', text: 'Pão sirio, molho de tomate, carne')
+    expect(page).to have_css('dd', text: 'Entrada')
+    expect(page).to have_css('dd', text: 'Mexicana')
+    expect(page).to have_css('dd', text: 'Pão sirio, molho de tomate, carne')
     expect(page).to have_css('p', text: 'Enrolar tudo no pão')
   end
 

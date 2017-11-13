@@ -1,7 +1,11 @@
 <h1>Minhas receitas favoritas</h1>
 
 <% if @recipes.any? %>
-  <% @recipes.each do |recipe| %>
-    <%= render recipe %>
-  <% end %>
+  <div class="row">
+    <% @recipes.each do |recipe| %>
+      <div class="col-6">
+        <%= render partial: 'shared/recipe_card', locals: {recipe: recipe} %>
+      </div>
+    <% end %>
+  </div>
 <% end %>
