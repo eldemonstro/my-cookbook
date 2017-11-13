@@ -21,10 +21,13 @@ feature 'User register recipe' do
 azeite, salsinha"
     fill_in 'Como Preparar', with: "Misturar tudo e servir. Adicione \
 limão a gosto."
+    attach_file('Foto da receita',
+                "#{Rails.root}/spec/support/fixtures/bolo.jpg")
     click_on 'Criar Receita'
 
     recipe = Recipe.last
 
+    expect(current_path).to eq(recipe_path(recipe))
     expect(page).to have_css('h1', text: 'Tabule')
     expect(page).to have_css('dd', text: 'Entrada')
     expect(page).to have_css('dd', text: 'Arabe')
@@ -37,6 +40,7 @@ picado, azeite, salsinha")
     expect(page).to have_css('p', text:  "Misturar tudo e servir. Adicione \
 limão a gosto.")
     expect(page).not_to have_xpath("//img[contains(@src,'star')]")
+    expect(page).to have_xpath("//img[contains(@src,'photo')]")
     expect(recipe.user).to eq user
   end
 
@@ -81,6 +85,8 @@ limão a gosto.")
 azeite, salsinha"
     fill_in 'Como Preparar', with: "Misturar tudo e servir. Adicione limão a \
 gosto."
+    attach_file('Foto da receita',
+                "#{Rails.root}/spec/support/fixtures/bolo.jpg")
     click_on 'Criar Receita'
 
     expect(page).to have_xpath("//img[contains(@src,'star')]")

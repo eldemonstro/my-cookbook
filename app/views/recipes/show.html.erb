@@ -1,3 +1,5 @@
+<%= image_tag @recipe.photo.url %>
+
 <h1><%= @recipe.title %></h1>
 <p class="lead">Por <%= link_to @recipe.user.name, user_profile_path(@recipe.user) %></p>
 
@@ -9,6 +11,7 @@
   <% end %>
   <hr>
 <% end %>
+
 
 <%= image_tag 'star.png' if @recipe.featured? %>
 

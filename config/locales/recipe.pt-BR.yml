@@ -12,6 +12,7 @@ pt-BR:
         ingredients: Ingredientes
         method: Como Preparar
         featured: Destaque
+        photo: Foto da receita
   recipes:
     show:
       name: Nome
