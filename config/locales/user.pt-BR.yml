@@ -8,8 +8,13 @@ pt-BR:
         password: Senha
         password_confirmation: 'Confirmar senha'
         name: Nome
+        city: Cidade
+        current_password: Senha atual
   forms:
     session:
       submit: Entrar
     registration:
-      submit: Cadastrar
+      new:
+        submit: Cadastrar
+      update:
+        submit: Atualizar perfil
