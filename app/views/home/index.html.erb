@@ -26,23 +26,26 @@
   </div>
   <div class="col">
     <h2>Cozinhas:</h2>
-    <ul class="list-group">
-      <% @cuisines.each do |cuisine| %>
-        <li class="list-group-item"><%= link_to cuisine.name, cuisine,
-                        class: 'btn btn-default' %></li>
-      <% end %>
-    </ul>
-
+    <%= if @cuisines.any? %>
+      <ul class="list-group">
+        <% @cuisines.each do |cuisine| %>
+          <li class="list-group-item"><%= link_to cuisine.name, cuisine,
+                          class: 'btn btn-default' %></li>
+        <% end %>
+      </ul>
+    <% end %>
     <%= link_to 'Criar nova cozinha', new_cuisine_path,
                 class: 'btn btn-default' %>
 
     <h2>Tipos de receita:</h2>
-    <ul class="list-group">
-      <% @recipe_type.each do |recipe_type| %>
-        <li class="list-group-item"><%= link_to recipe_type.name, recipe_type,
-                        class: 'btn btn-default' %></li>
-      <% end %>
-    </ul>
+    <% if @recipes.any? %>
+      <ul class="list-group">
+        <% @recipe_type.each do |recipe_type| %>
+          <li class="list-group-item"><%= link_to recipe_type.name, recipe_type,
+                          class: 'btn btn-default' %></li>
+        <% end %>
+      </ul>
+    <% end %>
 
     <%= link_to 'Criar novo tipo de receita', new_recipe_type_path,
                 class: 'btn btn-default' %>
