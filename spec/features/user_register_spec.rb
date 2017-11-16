@@ -11,8 +11,9 @@ feature 'user register' do
     fill_in 'Nome', with: 'Exemplo de Pessoa'
     fill_in 'Senha', with: '123456789'
     fill_in 'Confirmar senha', with: '123456789'
+    save_page
     within '.form-actions' do
-      click_on 'Cadastrar'
+      click_on 'Cadastrar perfil'
     end
 
     expect(page).to have_css('div.alert.alert-info',
@@ -30,7 +31,7 @@ feature 'user register' do
     fill_in 'Senha', with: ''
     fill_in 'Confirmar senha', with: ''
     within '.form-actions' do
-      click_on 'Cadastrar'
+      click_on 'Cadastrar perfil'
     end
 
     expect(page).to have_content('não pode ficar em branco')

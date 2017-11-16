@@ -17,8 +17,6 @@ feature 'user edits recipe' do
     click_on recipe.title
     click_on 'Editar'
 
-    save_page
-
     fill_in 'Título', with: 'Taco de carne'
     select 'Mexicana', from: 'Cozinha'
     select 'Entrada', from: 'Tipo da Receita'

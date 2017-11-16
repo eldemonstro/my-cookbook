@@ -13,8 +13,8 @@ pt-BR:
   forms:
     session:
       submit: Entrar
-    registration:
-      new:
-        submit: Cadastrar
-      update:
-        submit: Atualizar perfil
+  helpers:
+    submit:
+      user:
+          create: Cadastrar perfil
+          update: Atualizar perfil
