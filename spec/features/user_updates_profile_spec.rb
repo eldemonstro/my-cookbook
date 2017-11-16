@@ -37,4 +37,24 @@ feature 'user updates profile' do
 
     expect(page).to have_content('não pode ficar em branco')
   end
+
+  scenario 'and links facebook and twitter' do
+    user = create(:user, name: 'Christian', password: '123456')
+
+    login_as(user, scope: :user)
+    visit root_path
+    click_on 'Meu perfil'
+    click_on 'Atualizar meu perfil'
+
+    fill_in 'Facebook', with: 'fb.com/christiancozinheiro'
+    fill_in 'Twitter', with: '@christiancozinheiro'
+    fill_in 'Senha atual', with: '123456'
+    click_on 'Atualizar perfil'
+    click_on 'Meu perfil'
+
+    expect(page).to have_css('dt', text: 'Facebook')
+    expect(page).to have_css('dd', text: 'fb.com/christiancozinheiro')
+    expect(page).to have_css('dt', text: 'Twitter')
+    expect(page).to have_css('dd', text: '@christiancozinheiro')
+  end
 end

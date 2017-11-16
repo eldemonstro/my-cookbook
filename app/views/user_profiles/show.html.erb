@@ -1,6 +1,21 @@
 <h1>Perfil de <%= @user.name %></h1>
 <%= link_to t('.update_my_profile'), edit_user_registration_path, class: 'btn btn-primary' %>
 
+<dl class="row col-6">
+  <% if @user.facebook %>
+    <div class="row">
+      <dt class="col-3">Facebook</dd>
+      <dd class="col"><%= @user.facebook %></dd>
+    </div>
+  <% end %>
+  <% if @user.twitter %>
+    <div class="row">
+      <dt class="col-3">Twitter</dd>
+      <dd class="col"><%= @user.twitter %></dd>
+    </div>
+  <% end %>
+</dl>
+
 <section id="own-recipes">
   <h2>Receitas enviadas</h2>
   <div class="row">
