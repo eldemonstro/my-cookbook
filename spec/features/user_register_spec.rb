@@ -9,13 +9,14 @@ feature 'user register' do
 
     fill_in 'Email', with: 'example@example.com'
     fill_in 'Nome', with: 'Exemplo de Pessoa'
+    fill_in 'Cidade', with: 'São Paulo - SP'
     fill_in 'Senha', with: '123456789'
     fill_in 'Confirmar senha', with: '123456789'
-    save_page
     within '.form-actions' do
       click_on 'Cadastrar perfil'
     end
 
+    save_page
     expect(page).to have_css('div.alert.alert-info',
                              text: 'Bem-vindo! Você se registrou com êxito.')
   end

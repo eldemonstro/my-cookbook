@@ -20,4 +20,21 @@ feature 'user updates profile' do
     expect(page).to have_css('.alert.alert-info',
                              text: 'Sua conta foi atualizada com sucesso.')
   end
+
+  scenario 'and fills all required fields' do
+    user = create(:user, name: 'Christian', password: '123456')
+
+    login_as(user, scope: :user)
+    visit root_path
+    click_on 'Meu perfil'
+    click_on 'Atualizar meu perfil'
+
+    fill_in 'Nome', with: ''
+    fill_in 'Cidade', with: ''
+    fill_in 'Email', with: ''
+    fill_in 'Senha atual', with: ''
+    click_on 'Atualizar perfil'
+
+    expect(page).to have_content('não pode ficar em branco')
+  end
 end
